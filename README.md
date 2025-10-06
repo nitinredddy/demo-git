@@ -1,1 +1,1 @@
-# demo-git
+# calculator-template
