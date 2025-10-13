@@ -4,11 +4,21 @@ Students start with 2 passing tests, then add more
 """
 
 import pytest
-from src.calculator import add, divide, subtract, multiply
+from src.calculator import add, divide, subtract, multiply, power, square_root
 
 
 class TestBasicOperations:
     """Test basic arithmetic operations"""
+
+    def test_add_positive_numbers(self):
+        """Test adding positive numbers"""
+        assert add(2, 3) == 5
+        assert add(10, 15) == 25
+
+    def test_subtract_positive_numbers(self):
+        """Test subtracting positive numbers"""
+        assert subtract(5, 3) == 2
+        assert subtract(10, 4) == 6
 
     def test_add_negative_numbers(self):
         """Test adding negative numbers"""
@@ -48,6 +58,33 @@ class TestMultiplyDivide:
         """Test dividing negative numbers"""
         assert divide(-10, 2) == -5
         assert divide(-12, -3) == 4
+
+
+class TestAdvancedOperations:
+    """Test power and square root operations"""
+
+    def test_power_positive_numbers(self):
+        """Test power with positive numbers"""
+        assert power(2, 3) == 8
+        assert power(5, 2) == 25
+
+    def test_power_zero_exponent(self):
+        """Test power with zero exponent"""
+        assert power(5, 0) == 1
+        assert power(0, 0) == 1
+
+    def test_square_root_positive_numbers(self):
+        """Test square root of positive numbers"""
+        assert square_root(4) == 2
+        assert square_root(9) == 3
+        assert square_root(16) == 4
+
+    def test_square_root_negative_raises_error(self):
+        """Test that square root of negative raises ValueError"""
+        with pytest.raises(
+            ValueError, match="Cannot calculate square root of negative"
+        ):
+            square_root(-4)
 
 
 # TODO: Students will add TestMultiplyDivide class
